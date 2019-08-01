@@ -8,7 +8,8 @@ server = Flask(__name__)
 
 app = dash.Dash(server=server,
                 suppress_callback_exceptions=True,
-                assets_folder='/assets')
+                assets_url_path='assets',
+                assets_folder='assets')
 
 app.title = 'dkhosla Dash App Template'
 
