@@ -60,4 +60,4 @@ odio dui."""
     className="mt-4",
 )
 
-dashboard_layout = html.Div([navbar, body])
+dashboard_layout = html.Div([navbar, body], style={'fontFamily': 'Lato'})

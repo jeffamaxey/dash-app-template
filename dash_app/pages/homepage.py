@@ -17,7 +17,7 @@ homepage_layout = html.Div([
     ),
     html.Div(id='app-1-display-value'),
     dcc.Link('Go to Dashboard', href='/pages/dashboard')
-])
+], style={'fontFamily': 'Inconsolata'})
 
 
 @app.callback(
