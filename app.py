@@ -1,9 +1,16 @@
 from flask import Flask
 import dash
+import dash_auth
+
+from config import dict_logins
 
 server = Flask(__name__)
 
-app = dash.Dash(name='dkhosla dash app template',
-                server=server,
+app = dash.Dash(server=server,
                 suppress_callback_exceptions=True,
-                static_folder='/assets')
+                assets_folder='/assets')
+
+app.title = 'dkhosla Dash App Template'
+
+auth = dash_auth.BasicAuth(app,
+                           dict_logins)

@@ -6,17 +6,16 @@ from app import app
 from pages import homepage_layout, dashboard_layout
 
 app.layout = html.Div(children=[dcc.Location(id='url', refresh=False),
-                                html.Div(id='page-content')
-                                ])
+                                html.Div(id='page-content')])
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
     """
     """
-    if pathname == 'homepage':
-        return homepage.layout
-    elif pathname == 'dashboard':
-        return dashboard.layout
+    if pathname == '/':
+        return homepage_layout
+    elif pathname == '/dashboard':
+        return dashboard_layout
     else:
         return '404'
 
