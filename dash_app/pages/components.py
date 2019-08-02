@@ -66,21 +66,16 @@ widget_1 = dbc.Row(children=[
 def read_slider_for_target_lau(slider_value, dropdown_value):
     """
     """
-    if dropdown_value not in list_14_markets:
-        return ''
-    else:
+    if dropdown_value in list_14_markets:
         result = get_initial_submission_table(MARKET=dropdown_value,
                                               LAU_TARGET=slider_value)
-        print(result)
-
         df = result.get('lau_by_pillar')
-
-        print(df)
-
         return dbc.Table.from_dataframe(df,
                                         striped=True,
                                         bordered=True,
                                         hover=True)
+    else:
+        return "LAU Table will appear here."
 
 
 # assemble components into layout
