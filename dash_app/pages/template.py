@@ -15,9 +15,11 @@ from app import app
 # assemble components into layout
 layout_ = []
 
+
 # define callbacks
 @app.callback(Output(component_id="", component_property=""),
-              [Input(component_id="input-widget", component_property="input_widget_value")])
+              [Input(component_id="input-widget",
+                     component_property="input_widget_value")])
 def responsive_widget_1(input_widget_value):
     """
     """

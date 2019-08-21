@@ -6,7 +6,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
-from pages import homepage_layout, dashboard_layout, components_layout
+from pages import homepage_layout, dashboard_layout, mv_layout
 
 app.layout = html.Div(children=[dcc.Location(id='url', refresh=False),
                                 html.Div(id='page-content')])
@@ -19,8 +19,8 @@ def display_page(pathname):
         return homepage_layout
     elif pathname == '/dashboard':
         return dashboard_layout
-    elif pathname == '/components':
-        return components_layout
+    elif pathname == '/market':
+        return mv_layout
     else:
         return '404'
 

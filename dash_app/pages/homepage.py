@@ -4,17 +4,7 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
 from app import app
-
-navbar = dbc.Navbar([
-    html.A(
-        dbc.Row([
-            dbc.Col(html.Img(src='/assets/logo.png', height="30px"), width=4),
-            dbc.Col(dbc.NavbarBrand("Navbar Title", className="ml-2"), width=5)],
-                align="center",
-                no_gutters=True),
-        href="/")],
-                    color="dark",
-                    dark=True)
+from pages.components import header
 
 body = html.Div(
     children=[html.H3('Homepage'),
@@ -68,7 +58,7 @@ row = html.Div(
 )
 
 
-homepage_layout = [navbar, body, row]
+homepage_layout = [header, body, row]
 
 @app.callback(
     Output('app-1-display-value', 'children'),
