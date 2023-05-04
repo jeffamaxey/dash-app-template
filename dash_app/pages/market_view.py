@@ -43,12 +43,14 @@ mv_layout = [
                Input('input-lau', 'value')])
 def display_selected_values(dropdown_value, slider_value):
     '''Lorem ipsum'''
-    if dropdown_value in list_14_markets:
-        result = (f"Market={dropdown_value}, and LAU={int(slider_value/10**3):,d}k", slider_value)
-    else:
-        result = ("Please select a Market and LAU", slider_value)
-
-    return result
+    return (
+        (
+            f"Market={dropdown_value}, and LAU={int(slider_value / 10**3):,d}k",
+            slider_value,
+        )
+        if dropdown_value in list_14_markets
+        else ("Please select a Market and LAU", slider_value)
+    )
 
 
 result = get_initial_submission_table(MARKET='Germany',

@@ -87,32 +87,26 @@ def budget_allocation_for_target_LAU(MARKET: str,
         """
         srs = df_initial_allocation.query(f"KPI == '{KPI}'").squeeze()
 
-        if balance_lau > 0:
-            if srs['minimum_cost'] < srs['Cost_FDP_KPI']:
+        if balance_lau > 0 and srs['minimum_cost'] < srs['Cost_FDP_KPI']:
 
-                srs['additional_lau'] = min((srs['Cost_FDP_KPI'] - srs['minimum_cost']) / srs['cost_per_lau'],
-                                            balance_lau)
-                srs['additional_cost'] = srs['additional_lau'] * srs['cost_per_lau']
+            srs['additional_lau'] = min((srs['Cost_FDP_KPI'] - srs['minimum_cost']) / srs['cost_per_lau'],
+                                        balance_lau)
+            srs['additional_cost'] = srs['additional_lau'] * srs['cost_per_lau']
 
-                balance_lau = balance_lau - srs['additional_lau']
+            balance_lau = balance_lau - srs['additional_lau']
 
-                print(f"Allocated ${int(srs['additional_cost']):,d} to [{srs['Pillar']}: {KPI}] ... remaining={int(balance_lau):,d}") if verbose else ""
-            else:
-                srs['additional_lau'] = 0
-                srs['additional_cost'] = 0
+            print(f"Allocated ${int(srs['additional_cost']):,d} to [{srs['Pillar']}: {KPI}] ... remaining={int(balance_lau):,d}") if verbose else ""
         else:
             srs['additional_lau'] = 0
             srs['additional_cost'] = 0
         list_srs.append(srs)
 
-    df_allocated = \
-    (pd.concat(list_srs, axis=1)
-     .T
-     .set_index(['Pillar', 'KPI'])
-     .apply(lambda c: pd.to_numeric(c))
-     .sort_index(axis=1))
-
-    return df_allocated
+    return (
+        pd.concat(list_srs, axis=1)
+        .T.set_index(['Pillar', 'KPI'])
+        .apply(lambda c: pd.to_numeric(c))
+        .sort_index(axis=1)
+    )
 
 # ------------------------------------------------------------------------
 # Function to create data needed for displaying Market Submission View

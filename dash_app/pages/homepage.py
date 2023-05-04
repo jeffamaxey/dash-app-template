@@ -64,4 +64,4 @@ homepage_layout = [header, body, row]
     Output('app-1-display-value', 'children'),
     [Input('app-1-dropdown', 'value')])
 def display_value(value):
-    return 'You have selected "{}"'.format(value)
+    return f'You have selected "{value}"'
